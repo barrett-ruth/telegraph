@@ -18,14 +18,14 @@ jobs:
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test
           sudo apt-get update
           sudo apt-get install gcc-13 g++-13
-      - name: Build
+      - name: Configure CMake
         run: |
-          sudo cmake -S . -B ${{ github.workspace }}/build \
+          cmake -S . -B build \
             -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
             -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
             -DCMAKE_C_COMPILER=/usr/bin/gcc-13 \
             -DCMAKE_CXX_COMPILER=/usr/bin/g++-13
-          sudo cmake --build ${{ github.workspace }}/build --target install
-      - name: Test
-        working-directory: ${{github.workspace}}/build
-        run: ctest
+      - name: Build Project
+        run: cmake --build build
+      - name: Run Tests
+        run: ctest --test-dir build
