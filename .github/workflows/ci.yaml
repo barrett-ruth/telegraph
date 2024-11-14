@@ -28,4 +28,4 @@ jobs:
           sudo cmake --build ${{ github.workspace }}/build --target install
       - name: Test
         working-directory: ${{github.workspace}}/build
-        run: ctest --test-dir build
+        run: ctest
