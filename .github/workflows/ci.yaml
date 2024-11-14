@@ -1,30 +1,23 @@
 name: CMake
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
 env:
   BUILD_TYPE: Release
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Install CMake
         run: sudo apt-get install -y cmake
-
       - name: Install GCC-13
         run: |
           sudo add-apt-repository ppa:ubuntu-toolchain-r/test
           sudo apt-get update
           sudo apt-get install gcc-13 g++-13
-
       - name: Build
         run: |
           cmake -S . -B ${{ github.workspace }}/build \
@@ -33,9 +26,6 @@ jobs:
             -DCMAKE_C_COMPILER=/usr/bin/gcc-13 \
             -DCMAKE_CXX_COMPILER=/usr/bin/g++-13
           cmake --build ${{ github.workspace }}/build --target install
-
-
       - name: Test
         working-directory: ${{github.workspace}}/build
         run: ctest --test-dir build
-
