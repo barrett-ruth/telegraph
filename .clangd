@@ -1,0 +1,18 @@
+CompileFlags:
+  Add: [-Wall, -Wextra, -Wpedantic]
+  Compiler: g++
+
+Index:
+  Background: Build
+  StandardLibrary: Yes
+
+Completion:
+  AllScopes: Yes
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+
+Hover:
+  ShowAKA: Yes
