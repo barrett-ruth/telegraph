@@ -26,7 +26,7 @@ jobs:
           sudo apt-get install gcc-13 g++-13
 
       - name: Build
-        run: cmake -S . --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install --parallel -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DCMAKE_C_COMPILER=/usr/bin/gcc-13 -DCMAKE_CXX_COMPILER=/usr/bin/g++-13 && cmake --build build
+        run: cmake -S . --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --parallel -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DCMAKE_C_COMPILER=/usr/bin/gcc-13 -DCMAKE_CXX_COMPILER=/usr/bin/g++-13 && cmake --build build
 
       - name: Test
         working-directory: ${{github.workspace}}/build
