@@ -19,14 +19,15 @@ jobs:
       - name: Install CMake
         run: sudo apt-get install -y cmake
 
-      - name: Install GCC-13
-        run: |
-          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-          sudo apt-get update
-          sudo apt-get install gcc-13 g++-13
-
       - name: Build
-        run: cmake -S . --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --parallel -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DCMAKE_C_COMPILER=/usr/bin/gcc-13 -DCMAKE_CXX_COMPILER=/usr/bin/g++-13 && cmake --build build
+        run: |
+          cmake -S . -B ${{ github.workspace }}/build \
+            -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
+            -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
+            -DCMAKE_C_COMPILER=/usr/bin/gcc-13 \
+            -DCMAKE_CXX_COMPILER=/usr/bin/g++-13
+          cmake --build ${{ github.workspace }}/build --target install
+
 
       - name: Test
         working-directory: ${{github.workspace}}/build
