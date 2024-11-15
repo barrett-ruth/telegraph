@@ -1,4 +1,5 @@
-# 3.13 required for autoamtic benchmark downloads: https://github.com/google/benchmark?tab=readme-ov-file#installation
+# 3.13 required for autoamtic benchmark downloads:
+# https://github.com/google/benchmark?tab=readme-ov-file#installation
 cmake_minimum_required(VERSION 3.13)
 project(telegraph)
 
